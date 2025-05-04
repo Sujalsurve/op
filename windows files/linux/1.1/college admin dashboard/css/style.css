@@ -1,0 +1,80 @@
+/* Sidebar */
+#sidebar {
+    min-width: 250px;
+    max-width: 250px;
+    height: 100vh;
+    position: fixed;
+    left: 0;
+    top: 0;
+    overflow-y: auto;
+    transition: all 0.3s;
+  }
+  
+  #sidebar .sidebar-header {
+    background: #23272b;
+  }
+  
+  #sidebar ul.components {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+  }
+  
+  #sidebar ul li a {
+    padding: 14px 20px;
+    display: block;
+    color: #ddd;
+    text-decoration: none;
+    font-size: 16px;
+  }
+  
+  #sidebar ul li a:hover {
+    background: #495057;
+    color: white;
+  }
+  
+  /* Sidebar collapse */
+  #sidebar.active {
+    margin-left: -250px;
+  }
+  
+  /* Content area padding to shift */
+  #content {
+    margin-left: 250px;
+    transition: all 0.3s;
+  }
+  
+  #sidebar.active + #content {
+    margin-left: 0;
+  }
+  
+  /* Dashboard Cards */
+  .card-stats {
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  }
+  
+  /* Table hover */
+  .table > tbody > tr:hover {
+    background-color: #f8f9fa;
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    #sidebar {
+      margin-left: -250px;
+    }
+  
+    #sidebar.active {
+      margin-left: 0;
+    }
+  
+    #content {
+      margin-left: 0;
+    }
+  
+    #sidebar.active + #content {
+      margin-left: 250px;
+    }
+  }
+  

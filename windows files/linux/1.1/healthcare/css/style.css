@@ -1,0 +1,55 @@
+/* Sidebar Styling */
+.sidebar {
+    width: 220px;
+    min-height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    overflow-y: auto;
+    transition: all 0.3s;
+}
+
+.sidebar .components a {
+    padding: 12px 20px;
+    display: block;
+    transition: 0.2s;
+    text-decoration: none;
+}
+
+.sidebar .components a:hover {
+    background-color: #495057;
+}
+
+/* Page Content */
+#page-content-wrapper {
+    margin-left: 220px;
+    transition: margin 0.3s;
+}
+
+/* Sidebar Toggle (small screens) */
+#wrapper.toggled .sidebar {
+    margin-left: -220px;
+}
+
+#wrapper.toggled #page-content-wrapper {
+    margin-left: 0;
+}
+
+@media (max-width: 768px) {
+    .sidebar {
+        margin-left: -220px;
+    }
+
+    #page-content-wrapper {
+        margin-left: 0;
+    }
+
+    #wrapper.toggled .sidebar {
+        margin-left: 0;
+    }
+
+    #wrapper.toggled #page-content-wrapper {
+        margin-left: 220px;
+    }
+}

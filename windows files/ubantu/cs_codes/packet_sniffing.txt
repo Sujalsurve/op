@@ -1,0 +1,187 @@
+The provided Python script uses the **Scapy** library to capture and analyze IP packets from the network. Here's a **detailed explanation** of what each part of the code does and how the program works overall.
+
+---
+
+### 🔧 **Library Imports**
+
+```python
+from scapy.all import sniff
+from scapy.layers.inet import IP, TCP, UDP, ICMP
+```
+
+* `scapy.all.sniff`: Used to capture network packets in real-time.
+* `scapy.layers.inet`: Provides access to the `IP`, `TCP`, `UDP`, and `ICMP` protocol layers.
+
+---
+
+### 🔁 **Packet Callback Function**
+
+```python
+def packet_callback(packet):
+```
+
+This function is **called automatically** for every packet captured by `sniff()`.
+
+#### Inside the Function:
+
+```python
+    if IP in packet:
+```
+
+* Checks if the packet contains an IP layer (i.e., it's an IP packet).
+
+```python
+        ip_layer = packet[IP]
+```
+
+* Extracts the IP layer from the packet.
+
+```python
+        protocol = ip_layer.proto
+        src_ip = ip_layer.src
+        dst_ip = ip_layer.dst
+```
+
+* `proto`: Numeric identifier for the transport-layer protocol (1=ICMP, 6=TCP, 17=UDP).
+* `src_ip`: Source IP address.
+* `dst_ip`: Destination IP address.
+
+#### Protocol Name Mapping:
+
+```python
+        protocol_name = ""
+        if protocol == 1:
+            protocol_name = "ICMP"
+        elif protocol == 6:
+            protocol_name = "TCP"
+        elif protocol == 17:
+            protocol_name = "UDP"
+        else:
+            protocol_name = "Unknown Protocol"
+```
+
+* Converts the numeric protocol ID into a human-readable name.
+
+#### Printing Packet Details:
+
+```python
+        print(f"Protocol: {protocol_name}")
+        print(f"Source IP: {src_ip}")
+        print(f"Destination IP: {dst_ip}")
+        print("-" * 50)
+```
+
+* Prints the protocol name, source, and destination IPs for the packet.
+
+---
+
+### 🧠 **Main Function**
+
+```python
+def main():
+    sniff(prn=packet_callback, filter="ip", store=0)
+```
+
+* **`sniff()`**:
+
+  * `prn=packet_callback`: Passes each captured packet to the `packet_callback()` function.
+  * `filter="ip"`: Captures only IP packets (ignores ARP, etc.).
+  * `store=0`: Does **not store** packets in memory (good for performance).
+
+---
+
+### 🚀 **Script Execution Entry Point**
+
+```python
+if __name__ == "__main__":
+    main()
+```
+
+* Ensures `main()` runs **only** if the script is run directly (not imported as a module).
+
+---
+
+### 🧩 **Summary: What Does It Do?**
+
+This script is a **simple packet sniffer** that:
+
+* Captures **live IP packets** on the default network interface.
+* Identifies the protocol (ICMP, TCP, UDP).
+* Displays:
+
+  * **Protocol**
+  * **Source IP**
+  * **Destination IP**
+* Ignores non-IP traffic (like ARP, Ethernet-only frames).
+
+---
+
+### ⚠️ **Important Notes**
+
+* It may require **root/admin privileges** to capture packets:
+
+  ```bash
+  sudo python3 your_script.py
+  ```
+
+* It only prints metadata (IP headers), not packet payloads.
+
+* This is useful for **network monitoring, debugging, or learning** about network traffic.
+
+
+
+
+
+
+
+
+
+**Packet sniffing** is the process of **intercepting and capturing data packets** as they travel across a computer network. It allows someone (a user, admin, or attacker) to **see the raw network traffic**, including headers and sometimes the actual data (payload) being transmitted.
+
+---
+
+### 🧩 **What Packet Sniffing Does**
+
+Packet sniffing typically:
+
+* **Monitors network activity** in real time.
+* **Captures data packets** (like HTTP requests, DNS queries, TCP handshakes, etc.).
+* **Analyzes protocols** such as IP, TCP, UDP, ICMP, ARP, DNS, HTTP, etc.
+* **Logs communication** between devices (IP addresses, ports, flags, etc.).
+* **Helps troubleshoot** network issues or debug applications.
+* **Detects anomalies** like unauthorized access or unusual traffic patterns.
+* **Can extract data** such as credentials (if not encrypted), website access patterns, file transfers, etc.
+
+---
+
+### 🔍 Common Use Cases
+
+| Use Case                        | Description                                                                |
+| ------------------------------- | -------------------------------------------------------------------------- |
+| ✅ Network debugging             | Track packet loss, latency, misconfigured devices, or dropped connections. |
+| 🛡️ Security monitoring         | Detect intrusions, DDoS attacks, or suspicious traffic.                    |
+| 🖥️ Performance analysis        | Measure throughput, protocol efficiency, or application response times.    |
+| 🎓 Learning/education           | Understand how protocols and data flow in a network.                       |
+| 🚨 Malicious spying (unethical) | Hackers might use sniffing to capture sensitive unencrypted data.          |
+
+---
+
+### ⚠️ **Ethical Considerations**
+
+* **Authorized use**: System admins, developers, or researchers use sniffers for diagnostics or analysis **with permission**.
+* **Unauthorized sniffing**: Intercepting packets on a network you don’t own/control is usually **illegal or unethical**.
+
+---
+
+### 📦 Examples of Packet Sniffing Tools
+
+| Tool          | Type           | Description                               |
+| ------------- | -------------- | ----------------------------------------- |
+| **Wireshark** | GUI-based      | Industry-standard packet analyzer         |
+| **tcpdump**   | CLI-based      | Lightweight and scriptable sniffer        |
+| **Scapy**     | Python library | Programmable sniffing and packet crafting |
+
+---
+
+Would you like a Wireshark capture example or a comparison with packet spoofing?
+

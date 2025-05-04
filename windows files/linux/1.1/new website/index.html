@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Dashboard</title>
+  <link rel="stylesheet" href="css/bootstrap.min.css" />
+  <link rel="stylesheet" href="css/dataTables.bootstrap5.min.css" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <!-- Sidebar -->
+  <nav class="sidebar-nav">
+    <div class="d-flex flex-column align-items-start px-3">
+      <h3 class="text-white mb-4">CORE</h3>
+      <ul class="nav flex-column w-100">
+        <li class="nav-item"><a class="nav-link active" href="#">Dashboard</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">Layouts</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">Pages</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">Charts</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">Tables</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <main>
+    <div class="row mb-4">
+      <div class="col-md-3">
+        <div class="card text-white bg-primary">
+          <div class="card-body">Total Students</div>
+          <div class="card-footer text-end"><a href="#" class="text-white">View Details →</a></div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="card text-white bg-warning">
+          <div class="card-body">Upcoming Exams</div>
+          <div class="card-footer text-end"><a href="#" class="text-white">View Details →</a></div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="card text-white bg-success">
+          <div class="card-body">Completed Exams</div>
+          <div class="card-footer text-end"><a href="#" class="text-white">View Details →</a></div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="card text-white bg-danger">
+          <div class="card-body">Pending Tasks</div>
+          <div class="card-footer text-end"><a href="#" class="text-white">View Details →</a></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Table Section -->
+    <div class="card">
+      <div class="card-header">Student Data</div>
+      <div class="card-body table-responsive">
+        <table id="dataTable" class="table table-bordered">
+          <thead class="table-light">
+            <tr>
+              <th>Name</th>
+              <th>Roll No</th>
+              <th>Course</th>
+              <th>Year</th>
+              <th>Result</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>John Doe</td><td>101</td><td>BSc IT</td><td>3</td><td>Passed</td></tr>
+            <tr><td>Jane Smith</td><td>102</td><td>BCA</td><td>2</td><td>Pending</td></tr>
+            <tr><td>Aryan Shah</td><td>103</td><td>BBA</td><td>1</td><td>Passed</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </main>
+
+  <!-- Scripts -->
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+  <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
+  <script>
+    $(document).ready(function () {
+      $('#dataTable').DataTable();
+    });
+  </script>
+</body>
+</html>
